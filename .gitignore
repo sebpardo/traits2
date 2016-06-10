@@ -36,3 +36,5 @@ database.yml
 notes_josh.md
 documentation.md
 postgres/
+seedtest
+rundb
