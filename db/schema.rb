@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at"
   end
 
-  add_index "issues", ["observation_id"], name: "index_issues_on_observation_id"
-  add_index "issues", ["user_id"], name: "index_issues_on_user_id"
+  add_index "issues", ["observation_id"], name: "index_issues_on_observation_id", using: :btree
+  add_index "issues", ["user_id"], name: "index_issues_on_user_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.integer  "user_id"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.boolean  "approved"
   end
 
-  add_index "locations", ["user_id"], name: "index_locations_on_user_id"
+  add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
 
   create_table "measurements", force: :cascade do |t|
     t.integer  "user_id"
@@ -57,23 +57,13 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at"
   end
 
-  add_index "measurements", ["methodology_id"], name: "index_measurements_on_methodology_id"
-  add_index "measurements", ["observation_id"], name: "index_measurements_on_observation_id"
-  add_index "measurements", ["precisiontype_id"], name: "index_measurements_on_precisiontype_id"
-  add_index "measurements", ["standard_id"], name: "index_measurements_on_standard_id"
-  add_index "measurements", ["trait_id"], name: "index_measurements_on_trait_id"
-  add_index "measurements", ["user_id"], name: "index_measurements_on_user_id"
-  add_index "measurements", ["valuetype_id"], name: "index_measurements_on_valuetype_id"
-
-  create_table "measurements_methodologies", force: :cascade do |t|
-    t.integer  "measurement_id"
-    t.integer  "methodology_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "measurements_methodologies", ["measurement_id"], name: "index_measurements_methodologies_on_measurement_id"
-  add_index "measurements_methodologies", ["methodology_id"], name: "index_measurements_methodologies_on_methodology_id"
+  add_index "measurements", ["methodology_id"], name: "index_measurements_on_methodology_id", using: :btree
+  add_index "measurements", ["observation_id"], name: "index_measurements_on_observation_id", using: :btree
+  add_index "measurements", ["precisiontype_id"], name: "index_measurements_on_precisiontype_id", using: :btree
+  add_index "measurements", ["standard_id"], name: "index_measurements_on_standard_id", using: :btree
+  add_index "measurements", ["trait_id"], name: "index_measurements_on_trait_id", using: :btree
+  add_index "measurements", ["user_id"], name: "index_measurements_on_user_id", using: :btree
+  add_index "measurements", ["valuetype_id"], name: "index_measurements_on_valuetype_id", using: :btree
 
   create_table "methodologies", force: :cascade do |t|
     t.integer  "user_id"
@@ -84,7 +74,7 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at"
   end
 
-  add_index "methodologies", ["user_id"], name: "index_methodologies_on_user_id"
+  add_index "methodologies", ["user_id"], name: "index_methodologies_on_user_id", using: :btree
 
   create_table "methodologies_traits", id: false, force: :cascade do |t|
     t.integer "trait_id"
@@ -103,11 +93,11 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at"
   end
 
-  add_index "observations", ["location_id"], name: "index_observations_on_location_id"
-  add_index "observations", ["resource_id"], name: "index_observations_on_resource_id"
-  add_index "observations", ["resource_secondary_id"], name: "index_observations_on_resource_secondary_id"
-  add_index "observations", ["specie_id"], name: "index_observations_on_specie_id"
-  add_index "observations", ["user_id"], name: "index_observations_on_user_id"
+  add_index "observations", ["location_id"], name: "index_observations_on_location_id", using: :btree
+  add_index "observations", ["resource_id"], name: "index_observations_on_resource_id", using: :btree
+  add_index "observations", ["resource_secondary_id"], name: "index_observations_on_resource_secondary_id", using: :btree
+  add_index "observations", ["specie_id"], name: "index_observations_on_specie_id", using: :btree
+  add_index "observations", ["user_id"], name: "index_observations_on_user_id", using: :btree
 
   create_table "precisiontypes", force: :cascade do |t|
     t.integer  "user_id"
@@ -118,7 +108,7 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "precisiontypes", ["user_id"], name: "index_precisiontypes_on_user_id"
+  add_index "precisiontypes", ["user_id"], name: "index_precisiontypes_on_user_id", using: :btree
 
   create_table "releases", force: :cascade do |t|
     t.integer  "user_id"
@@ -130,7 +120,7 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at",          null: false
   end
 
-  add_index "releases", ["user_id"], name: "index_releases_on_user_id"
+  add_index "releases", ["user_id"], name: "index_releases_on_user_id", using: :btree
 
   create_table "resources", force: :cascade do |t|
     t.integer  "user_id"
@@ -147,7 +137,7 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at"
   end
 
-  add_index "resources", ["user_id"], name: "index_resources_on_user_id"
+  add_index "resources", ["user_id"], name: "index_resources_on_user_id", using: :btree
 
   create_table "species", force: :cascade do |t|
     t.integer  "user_id"
@@ -159,7 +149,7 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at"
   end
 
-  add_index "species", ["user_id"], name: "index_species_on_user_id"
+  add_index "species", ["user_id"], name: "index_species_on_user_id", using: :btree
 
   create_table "standards", force: :cascade do |t|
     t.integer  "user_id"
@@ -172,7 +162,7 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at"
   end
 
-  add_index "standards", ["user_id"], name: "index_standards_on_user_id"
+  add_index "standards", ["user_id"], name: "index_standards_on_user_id", using: :btree
 
   create_table "synonyms", force: :cascade do |t|
     t.integer  "specie_id"
@@ -183,7 +173,7 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at"
   end
 
-  add_index "synonyms", ["specie_id"], name: "index_synonyms_on_specie_id"
+  add_index "synonyms", ["specie_id"], name: "index_synonyms_on_specie_id", using: :btree
 
   create_table "traitclasses", force: :cascade do |t|
     t.integer  "user_id"
@@ -194,7 +184,7 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "traitclasses", ["user_id"], name: "index_traitclasses_on_user_id"
+  add_index "traitclasses", ["user_id"], name: "index_traitclasses_on_user_id", using: :btree
 
   create_table "traits", force: :cascade do |t|
     t.integer  "user_id"
@@ -210,9 +200,9 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at"
   end
 
-  add_index "traits", ["standard_id"], name: "index_traits_on_standard_id"
-  add_index "traits", ["traitclass_id"], name: "index_traits_on_traitclass_id"
-  add_index "traits", ["user_id"], name: "index_traits_on_user_id"
+  add_index "traits", ["standard_id"], name: "index_traits_on_standard_id", using: :btree
+  add_index "traits", ["traitclass_id"], name: "index_traits_on_traitclass_id", using: :btree
+  add_index "traits", ["user_id"], name: "index_traits_on_user_id", using: :btree
 
   create_table "traits_traitvalues", id: false, force: :cascade do |t|
     t.integer "trait_id"
@@ -227,7 +217,7 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at"
   end
 
-  add_index "traitvalues", ["trait_id"], name: "index_traitvalues_on_trait_id"
+  add_index "traitvalues", ["trait_id"], name: "index_traitvalues_on_trait_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -249,8 +239,8 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "last_seen_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["remember_digest"], name: "index_users_on_remember_digest"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["remember_digest"], name: "index_users_on_remember_digest", using: :btree
 
   create_table "valuetypes", force: :cascade do |t|
     t.integer  "user_id"
@@ -261,7 +251,7 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "valuetypes", ["user_id"], name: "index_valuetypes_on_user_id"
+  add_index "valuetypes", ["user_id"], name: "index_valuetypes_on_user_id", using: :btree
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",      limit: 255, null: false
@@ -274,6 +264,6 @@ ActiveRecord::Schema.define(version: 20160601021815) do
     t.string   "ip",             limit: 255
   end
 
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
 end
